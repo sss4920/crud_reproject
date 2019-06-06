@@ -7,6 +7,8 @@ class Blog(models.Model):
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     published_at = models.DateTimeField(null=True)
+    hashtags = models.ManyToManyField('hashtag', blank=True)
+    image = models.ImageField(upload_to='images/',blank=True) 
 
     def __str__(self):
         return self.title
@@ -17,3 +19,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment_text
+
+class Hashtag(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
